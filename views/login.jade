@@ -4,12 +4,14 @@ block contenido
 	header
 		h1 Validación de usuario
 		h2 Ingresa usuario y contraseña
-	section
+	section(style="width:400px;")
 		form(action="#", method="")
-			label(for="usuario") Usuario
-			input(type="text" id="usuario")
-			label(for="pass") Contraseña
-			input(type="password", id="pass")
-			input(type="submit", value="Validar datos")
+			div(class="form-group")
+				label(for="usuario") Usuario
+				input(type="text" id="usuario" class="form-control")
+			div(class="form-group")
+				label(for="pass") Contraseña
+				input(type="password", id="pass" class="form-control")
+			input(type="submit", value="Validar datos" class="btn btn-primary")
 
 		a(href="/") Regresar al inicio
