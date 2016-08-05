@@ -1,0 +1,15 @@
+extends ./layout.jade
+
+block contenido
+	header
+		h1 Validación de usuario
+		h2 Ingresa usuario y contraseña
+	section
+		form(action="#", method="")
+			label(for="usuario") Usuario
+			input(type="text" id="usuario")
+			label(for="pass") Contraseña
+			input(type="password", id="pass")
+			input(type="submit", value="Validar datos")
+
+		a(href="/") Regresar al inicio
