@@ -5,13 +5,13 @@ block contenido
 		h1 Validación de usuario
 		h2 Ingresa usuario y contraseña
 	section(style="width:400px;")
-		form(action="#", method="")
+		form(action="/login", method="POST")
 			div(class="form-group")
-				label(for="usuario") Usuario
-				input(type="text" id="usuario" class="form-control")
+				label(for="email") Email
+				input(type="text" id="email" class="form-control" name="email")
 			div(class="form-group")
 				label(for="pass") Contraseña
-				input(type="password", id="pass" class="form-control")
+				input(type="password", id="password" class="form-control" name="password")
 			input(type="submit", value="Validar datos" class="btn btn-primary")
 
 		a(href="/") Regresar al inicio
