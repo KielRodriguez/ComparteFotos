@@ -10,8 +10,11 @@ block contenido
 				label(for="email") Email
 				input(type="text" id="email" class="form-control" name="email")
 			div(class="form-group")
-				label(for="pass") Contraseña
+				label(for="password") Contraseña
 				input(type="password", id="password" class="form-control" name="password")
+			div(class='form-group')
+				label(for="password_confirmation") Confirma contraseña
+				input(type='text' id='password_confirmation' name='password_confirmation' class='form-control')
 			input(type="submit", value="Validar datos" class="btn btn-primary")
 
 		a(href="/") Regresar al inicio
