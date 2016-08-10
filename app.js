@@ -24,17 +24,18 @@ app.get('/login', function(req, res){
 
 app.post('/login', function(req, res){
 
-	var usr = new User({email:req.body.email, 
-						password:req.body.password,
-						password_confirmation: req.body.password_confirmation
-					});
-
 	console.log('Recibimos tus datos');
 	console.log('Email: ' + req.body.email );
 	console.log('Password ' + req.body.password );
 	console.log('Password Confirmation ' + req.body.password_confirmation)
 	console.log('redireccionando a index');
- 	
+
+	var usr = new User({email:req.body.email, 
+						password:req.body.password
+					});
+
+	usr.password_confirmation = req.body.password_confirmation;
+	
  	usr.save(function(){
  		res.send('Se creo correctmente el usuario');
  	});

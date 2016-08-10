@@ -9,12 +9,16 @@ var user_schema = new Schema({
 	password: String,
 	email: String,
 	day_of_birthday: Date
+
 });
 
 user_schema.virtual('password_confirmation').get(function(){
-	return this.password_confirmation;
+	return this.password;
 }).set(function(password){
-	this.password_confirmation = password;
+	console.log('virtual password ' + password );
+	console.log('virtual password form ' + this.password );
+	if( this.password != password)
+		throw new Error('Confirmación y contraseña son diferentes');
 });
 
 var User = mongoose.model("User", user_schema);
