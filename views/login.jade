@@ -4,8 +4,14 @@ block contenido
 	header
 		h1 Validación de usuario
 		h2 Ingresa usuario y contraseña
-	section(style="width:400px;")
+	section(style="width:80%;")
 		form(action="/login", method="POST")
+			div(class='form-group')
+				label(for='Nombre') Nombre
+				input(type='text' id='name' name='name' class='form-control')
+			div(class='form-group')
+				label(for='username') Nombre de usuario
+				input(type='text' id='username' name='username' class='form-control')
 			div(class="form-group")
 				label(for="email") Email
 				input(type="text" id="email" class="form-control" name="email")
@@ -15,6 +21,19 @@ block contenido
 			div(class='form-group')
 				label(for="password_confirmation") Confirma contraseña
 				input(type='password' id='password_confirmation' name='password_confirmation' class='form-control')
+			div(class='form-group')
+				label(for='age') Edad
+				input(type='number' max='100' min='4' class='form-control')
+			div(class='form-group')
+				label(for='day_of_birthday') Fecha nacimento
+				input(type='date' id='day_of_birthday' name='day_of_birthday' class='form-control')
+			div(class='form-group')
+				label(for='sex') Sexo
+				select(class='form-control' id='sex' name='sex')
+					option(value='F') Femenino
+					option(value='M') Masculino
+
+				
 			input(type="submit", value="Validar datos" class="btn btn-primary")
 
 		a(href="/") Regresar al inicio

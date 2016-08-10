@@ -35,10 +35,20 @@ app.post('/login', function(req, res){
 					});
 
 	usr.password_confirmation = req.body.password_confirmation;
-	
- 	usr.save(function(){
- 		res.send('Se creo correctmente el usuario');
- 	});
+
+	usr.validate(function(error){
+
+		if(error){
+			console.log(error);
+			res.send('Ocurrio un error al procesar la petición');
+		}
+		else{
+
+			usr.save(function(err){
+				res.send("Se inserto la fila correctamente");
+			});
+		}
+	});
 	
 });
 
