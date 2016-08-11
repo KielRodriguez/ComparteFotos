@@ -11,7 +11,7 @@ var sess;
 
 app.use('/estatico', express.static('public'));
 app.use(cookieParser());
-app.use(session({ secret: 'keyboard cat', key: 'sid', cookie: { secure: true }}));
+app.use(session({ secret: 'keyboard cat', key: 'sid', cookie: { secure: false, maxAge:6000 }}));
 app.use(bodyParser.json()); //peticiones con formato application/json
 app.use(bodyParser.urlencoded({extended:true})); //obtiene parametros provenientes de la url
 
@@ -81,6 +81,7 @@ app.post('/session', function(req, res){
 		console.log(user)
 		console.log(user._id);
 		sess.user_id = user._id;
+		sess.save();
 		console.log('user_id: ' + sess.user_id);
 		console.log('======================');
 	});
