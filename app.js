@@ -1,17 +1,30 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
+//var session = require('express-session');
+var cookieSession = require('cookie-session');
+var routersApp = require('./routers_app');
+var session_middleware = require('./middlewares/session');
+var methodOverride = require('method-override');
 
 
 var User = require('./models/user').User;
 var app = express();
-var sess;
+/*
+var sess = {
+	secret: 'comparte-fotors_18273hat1',
+	cookie:{}
+}
+*/
+
+var sess ={
+	name:'session',
+	keys:['key1', 'key2']
+}
 
 
+app.use(methodOverride('_method'));
 app.use('/estatico', express.static('public'));
-app.use(cookieParser());
-app.use(session({ secret: 'keyboard cat', key: 'sid', cookie: { secure: false, maxAge:6000 }}));
+app.use( cookieSession(sess) );
 app.use(bodyParser.json()); //peticiones con formato application/json
 app.use(bodyParser.urlencoded({extended:true})); //obtiene parametros provenientes de la url
 
@@ -35,25 +48,18 @@ app.post('/singup', function(req, res){
 
 
 	console.log('Recibimos tus datos');
-	console.log('Nombre: ' +  req.body.name);
 	console.log('Email: ' + req.body.email );
 	console.log('Nombre de usuario: ' + req.body.username);
 	console.log('Password ' + req.body.password );
 	console.log('Password Confirmation ' + req.body.password_confirmation)
-	console.log('Edad ' + req.body.age);
-	console.log('Sexo ' + req.body.sex);
 
 	var usr = new User({
-						name: req.body.name,
 						email:req.body.email,
 						username: req.body.username,
-						password:req.body.password,
-						age: req.body.age,
-						day_of_birthday: req.body.day_of_birthday, 
-						sex: req.body.sex
-						
+						password:req.body.password
 					});
 
+	//Esto es necesario meterlo en un try catch
 	usr.password_confirmation = req.body.password_confirmation;
 
 	usr.save().then(function(usr){
@@ -70,9 +76,7 @@ app.get('/singin', function(req, res){
 	res.render('singin');
 });
 
-app.post('/session', function(req, res){
-
-	sess = req.session
+app.post('/session', function(req, res, next){
 	console.log('Email: ' + req.body.email );
 	console.log('Password: ' + req.body.password );
 
@@ -80,15 +84,19 @@ app.post('/session', function(req, res){
 		console.log('find user for session')
 		console.log(user)
 		console.log(user._id);
-		sess.user_id = user._id;
-		sess.save();
-		console.log('user_id: ' + sess.user_id);
+		req.session.user_id = user._id;
+		req.session.save();
+		console.log('user_id: ' + req.session.user_id);
 		console.log('======================');
+		res.redirect('/app/');
 	});
 
 	
 
-	res.send('Hola mundo');
+	
 });
+
+app.use('/app', session_middleware);
+app.use('/app', routersApp);
 
 app.listen(3000);

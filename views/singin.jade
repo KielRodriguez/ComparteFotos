@@ -1,19 +1,22 @@
 extends ./layout.jade
 
 block contenido
-	header
-		h1 Iniciar Sesión
-	form(style='width:80%' action='/session' method='POST')
-		div(class='row')
-			div(class='col-xs-12 col-md-12')
-				div(class='form-group')
-					label(for='email') Email
-					input(type='text' id='email' name='email' class='form-control')
-		div(class='row')
-			div(class='col-xs-12 col-md-12')
-				div(class='form-group')
-					label(for='password') Contraseña
-					input(type='password' id='password' name='password' class='form-control')
-		div(class='row')
-			div(class='col-xs-12 col-md-4 col-md-offset-4')
-				input(type='submit' value='Iniciar Sesión' class='btn btn-primary btn-larger btn-block')
+	div(class='col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 big-top-space')
+		header
+			h1 Iniciar Sesión
+		form(action='/session' method='POST')
+			div(class='row')
+				div(class='col-sm-12 col-md-12')
+					div(class='form-group')
+						label(for='email') Email
+						input(type='text' id='email' name='email' class='form-control')
+			div(class='row')
+				div(class='col-xs-12 col-md-12')
+					div(class='form-group')
+						label(for='password') Contraseña
+						input(type='password' id='password' name='password' class='form-control')
+			div(class='row')
+				div(class='col-sm-12 col-md-6 col-lg-6')
+					input(type='submit' value='Iniciar Sesión' class='btn btn-primary')
+				div(class='col-sm-12 col-md-6 col-lg-6 text-right')
+					a(href='/singup') ¿No tienes una cuenta?

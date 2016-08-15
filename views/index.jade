@@ -2,9 +2,8 @@ extends ./layout.jade
 
 
 block contenido
-	h1 Bienvenido a ComparteFotos
-	h2 En este sito podras compartir tus fotos con el mundo
-
-	a(href="/singin") Iniciar Sesión
-	br
-	a(href='/singin') Registro
+	div(class='row')
+		div(class='col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 text-center big-top-space')
+			h1 Bienvenido a ComparteFotos
+			a(href="/singin" class='right-space btn btn-primary') Iniciar Sesión
+			a(href='/singup' class='btn btn-primary') Registro
